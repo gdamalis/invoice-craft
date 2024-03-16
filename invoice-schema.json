@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Invoice",
+  "description": "An invoice structure for billing purposes.",
+  "type": "object",
+  "properties": {
+    "number": {
+      "type": "string",
+      "description": "The invoice number."
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "The invoice date in YYYY-MM-DD format."
+    },
+    "from": {
+      "type": "string",
+      "description": "Sender's address and information."
+    },
+    "to": {
+      "type": "string",
+      "description": "Recipient's basic information."
+    },
+    "ship_to": {
+      "type": "string",
+      "description": "Shipping address for the invoice."
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Due date for the invoice payment in YYYY-MM-DD format."
+    },
+    "payment_terms": {
+      "type": "string",
+      "description": "Terms of payment for the invoice."
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the item or service."
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "The quantity of the item or service."
+          },
+          "unit_cost": {
+            "type": "number",
+            "description": "Unit cost of the item or service."
+          }
+        },
+        "required": ["name", "quantity", "unit_cost"]
+      },
+      "description": "List of items or services included in the invoice."
+    }
+  },
+  "required": ["number", "date", "from", "to", "ship_to", "due_date", "payment_terms", "items"]
+}
