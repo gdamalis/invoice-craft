@@ -6,7 +6,7 @@ export const saveInvoice = async (invoice, client) => {
     const db = client.db("contractor");
 
     const invoices = db.collection("invoices");
-    const result = await invoices.insertOne(invoice, {creat});
+    const result = await invoices.insertOne(invoice);
 
     console.log("Invoice saved", result.insertedId);
   } catch (error) {
