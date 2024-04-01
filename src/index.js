@@ -44,5 +44,5 @@ generateInvoice(invoice, fileName).then(async () => {
   const client = await connect();
 
   // Save invoice to MongoDB
-  saveInvoice(invoice, client);
+  await saveInvoice(invoice, client);
 });
