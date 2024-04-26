@@ -1,10 +1,10 @@
-# Invoice Generator Documentation
+# InvoiceCraft Documentation
 
-Welcome to the Invoice Generator documentation! This tool is designed to simplify the creation of PDF invoices for contractors and freelancers. By automating the invoice generation process, it allows professionals to focus more on their work and less on administrative tasks.
+Welcome to the InvoiceCraft documentation! This tool is designed to simplify the creation of PDF invoices for contractors and freelancers. By automating the invoice generation process, it allows professionals to focus more on their work and less on administrative tasks.
 
 ## Overview
 
-The Invoice Generator utilizes an API from [https://invoice-generator.com/](https://invoice-generator.com/) to dynamically create PDF invoices. This process involves sending invoice details to the API, which then returns a professionally formatted PDF invoice.
+The InvoiceCraft utilizes the Invoice Generator API from [https://invoice-generator.com/](https://invoice-generator.com/) to dynamically create PDF invoices. This process involves sending invoice details to the API, which then returns a professionally formatted PDF invoice.
 
 ### Security and Privacy
 
@@ -12,7 +12,7 @@ The Invoice Generator utilizes an API from [https://invoice-generator.com/](http
 
 ## Getting Started
 
-To get started with the Invoice Generator, follow these setup instructions:
+To get started with the InvoiceCraft, follow these setup instructions:
 
 ### Setup Requirements
 
@@ -41,4 +41,4 @@ We welcome contributions and suggestions to improve this tool! If you have ideas
 - **Dependency Management:** Regularly update your dependencies to mitigate security vulnerabilities and keep your tool functioning with the latest node packages.
 - **Error Handling:** Implement error handling in your script to manage API failures or issues during the PDF generation process. This will improve the tool's reliability and user experience.
 
-By following these practices and guidelines, you can maintain and improve the Invoice Generator tool, making it more robust, secure, and easy to use.
+By following these practices and guidelines, you can maintain and improve the InvoiceCraft tool, making it more robust, secure, and easy to use.
