@@ -39,7 +39,6 @@ const fileName = process.env.FILE_NAME_FORMAT.replace(
 
 // Generate invoice
 generateInvoice(invoice, fileName).then(async () => {
-  console.log("Invoice generated");
   // Setup connection to MongoDB
   const client = await connect();
 
