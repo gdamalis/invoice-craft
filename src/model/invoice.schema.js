@@ -18,7 +18,7 @@ export const invoiceSchema = yup.object().shape({
   date: yup.date().required(),
   from: yup.string().required(),
   to: yup.string().required(),
-  ship_to: yup.string().required(),
+  ship_to: yup.string(),
   due_date: yup.date().required(),
   payment_terms: yup.string().required(),
   items: yup.array().of(itemSchema).required(),

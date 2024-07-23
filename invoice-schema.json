@@ -57,5 +57,5 @@
       "description": "List of items or services included in the invoice."
     }
   },
-  "required": ["number", "date", "from", "to", "ship_to", "due_date", "payment_terms", "items"]
+  "required": ["number", "date", "from", "to", "due_date", "payment_terms", "items"]
 }
