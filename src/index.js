@@ -2,7 +2,7 @@ import "dotenv/config.js";
 import { connect } from "./services/database.service.js";
 import { generateInvoice } from "./services/generate-invoice.service.js";
 import { saveInvoice } from "./services/save-invoice.service.js";
-import invoiceData from "../invoice.json" assert { type: 'json' };
+import invoiceData from "../invoice.json" assert { type: "json" };
 
 const invoice = {
   number: invoiceData.number,
@@ -39,9 +39,13 @@ const fileName = process.env.FILE_NAME_FORMAT.replace(
 
 // Generate invoice
 generateInvoice(invoice, fileName).then(async () => {
-  // Setup connection to MongoDB
-  const client = await connect();
+  if (process.argv.includes("--save")) {
+    // Setup connection to MongoDB
+    const client = await connect();
 
-  // Save invoice to MongoDB
-  await saveInvoice(invoice, client);
+    // Save invoice to MongoDB
+    await saveInvoice(invoice, client);
+  } else {
+    console.log("Invoice not saved in the cloud.");
+  }
 });

@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js"
+    "generate-save": "node src/index.js --save",
+    "generate": "node src/index.js"
   },
   "repository": {
     "type": "git",
