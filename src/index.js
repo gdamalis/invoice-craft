@@ -2,7 +2,7 @@ import "dotenv/config.js";
 import { connect } from "./services/database.service.js";
 import { generateInvoice } from "./services/generate-invoice.service.js";
 import { saveInvoice } from "./services/save-invoice.service.js";
-import invoiceData from "../invoice.json" assert { type: "json" };
+import invoiceData from "../invoice.json" with { type: "json" };
 
 const invoice = {
   number: invoiceData.number,
