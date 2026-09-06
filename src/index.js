@@ -50,4 +50,7 @@ generateInvoice(invoice, fileName).then(async (outputPath) => {
   } else {
     console.log("Invoice not saved in the cloud.");
   }
+}).catch((error) => {
+  console.error(`Invoice generation failed: ${error.message}`);
+  process.exitCode = 1;
 });
