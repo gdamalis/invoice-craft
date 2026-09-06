@@ -3,3 +3,4 @@ node_modules
 invoice*.json
 !invoice-schema.json
 .DS_Store
+.claude/
