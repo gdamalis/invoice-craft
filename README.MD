@@ -16,15 +16,25 @@ To get started with the InvoiceCraft, follow these setup instructions:
 
 ### Setup Requirements
 
-1. **Install Dependencies:** Run `npm install` to install all required dependencies for the project.
-2. **Environment Configuration:** Create a `.env` file for environment variables such as the MongoDB URI and the filename pattern for your invoices. Use the provided `.env.template` as a guide and follow the instructions within it to set up your environment correctly.
+1. **Install Dependencies:** Run `pnpm install` to install all required dependencies for the project.
+2. **Environment Configuration:** Copy `.env.template` to `.env` and fill it in. The variables are:
+
+| Variable | Required | Purpose |
+|---|---|---|
+| `INVOICE_GENERATOR_API_URL` | yes | Host the invoice payload is POSTed to |
+| `INVOICE_GENERATOR_API_KEY` | yes | Bearer token for that API |
+| `FILE_NAME_FORMAT` | yes | Output filename; `{{number}}` is replaced with the invoice number |
+| `OUTPUT_DIR` | no | Directory to write the PDF into. Created if missing, and a leading `~` is expanded. Defaults to the current working directory. |
+| `MONGODB_URI` | only for `--save` | Cluster the invoice payload is archived to |
 
 ### Generating an Invoice
 
 To generate an invoice:
 
 1. **Prepare Invoice Data:** Create an `invoice.json` file based on the provided `invoice-schema.json`. Fill in this file with the details you wish to include in your invoice.
-2. **Generate PDF:** Execute `npm run start`. This command triggers a script that generates the PDF invoice and saves the data used for that invoice in a MongoDB database.
+2. **Generate PDF:** Execute `pnpm generate`. This writes the PDF to `OUTPUT_DIR` (or the current directory) and prints the absolute path it used. Use `pnpm generate-save` instead to additionally archive the invoice data to MongoDB — that requires `MONGODB_URI`, and the machine's public egress IP must be allowlisted on the cluster.
+
+Keep the `invoice.json` you used. It is gitignored, so archive it alongside the generated PDF if you want the invoice to be reproducible later.
 
 ## Contribution Guidelines
 
