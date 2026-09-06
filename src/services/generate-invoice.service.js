@@ -11,6 +11,12 @@ if (!apiUrl) {
   throw new Error("INVOICE_GENERATOR_API_URL environment variable is not set");
 }
 
+// The variable is named _URL and is used as a hostname, so accept either form.
+// "https://invoice-generator.com" and "invoice-generator.com" both work; passing
+// the former straight to https.request fails DNS in a way that reads like an
+// outage rather than a config typo.
+const apiHost = apiUrl.trim().replace(/^[a-z]+:\/\//i, "").replace(/\/.*$/, "");
+
 if (!apiKey) {
   throw new Error("INVOICE_GENERATOR_API_KEY environment variable is not set");
 }
@@ -49,7 +55,7 @@ export const generateInvoice = async (invoice, filename) => {
   const invoiceData = JSON.stringify(invoice);
 
   const options = {
-    hostname: apiUrl,
+    hostname: apiHost,
     port: 443,
     path: "/",
     method: "POST",
