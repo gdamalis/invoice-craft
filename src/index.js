@@ -38,7 +38,9 @@ const fileName = process.env.FILE_NAME_FORMAT.replace(
 );
 
 // Generate invoice
-generateInvoice(invoice, fileName).then(async () => {
+generateInvoice(invoice, fileName).then(async (outputPath) => {
+  console.log(`Saved to ${outputPath}`);
+
   if (process.argv.includes("--save")) {
     // Setup connection to MongoDB
     const client = await connect();
