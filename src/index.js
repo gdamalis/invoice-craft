@@ -37,20 +37,36 @@ const fileName = process.env.FILE_NAME_FORMAT.replace(
   invoice.number
 );
 
-// Generate invoice
-generateInvoice(invoice, fileName).then(async (outputPath) => {
+const archive = async () => {
+  // Setup connection to MongoDB
+  const client = await connect();
+
+  // Save invoice to MongoDB
+  await saveInvoice(invoice, client);
+};
+
+const run = async () => {
+  // --save-only archives an invoice that has already been generated, without
+  // re-rendering it. Regenerating would spend another API call and rewrite the
+  // PDF with a new creation date, which matters once the file has been reviewed
+  // and filed.
+  if (process.argv.includes("--save-only")) {
+    console.log(`Archiving ${invoice.number} without regenerating the PDF.`);
+    await archive();
+    return;
+  }
+
+  const outputPath = await generateInvoice(invoice, fileName);
   console.log(`Saved to ${outputPath}`);
 
   if (process.argv.includes("--save")) {
-    // Setup connection to MongoDB
-    const client = await connect();
-
-    // Save invoice to MongoDB
-    await saveInvoice(invoice, client);
+    await archive();
   } else {
     console.log("Invoice not saved in the cloud.");
   }
-}).catch((error) => {
+};
+
+run().catch((error) => {
   console.error(`Invoice generation failed: ${error.message}`);
   process.exitCode = 1;
 });

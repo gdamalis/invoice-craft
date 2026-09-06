@@ -32,7 +32,15 @@ To get started with the InvoiceCraft, follow these setup instructions:
 To generate an invoice:
 
 1. **Prepare Invoice Data:** Create an `invoice.json` file based on the provided `invoice-schema.json`. Fill in this file with the details you wish to include in your invoice.
-2. **Generate PDF:** Execute `pnpm generate`. This writes the PDF to `OUTPUT_DIR` (or the current directory) and prints the absolute path it used. Use `pnpm generate-save` instead to additionally archive the invoice data to MongoDB — that requires `MONGODB_URI`, and the machine's public egress IP must be allowlisted on the cluster.
+2. **Generate PDF:** Execute `pnpm generate`. This writes the PDF to `OUTPUT_DIR` (or the current directory) and prints the absolute path it used.
+
+| Command | What it does |
+|---|---|
+| `pnpm generate` | Render the PDF only |
+| `pnpm generate-save` | Render the PDF *and* archive the invoice data to MongoDB |
+| `pnpm save-only` | Archive an already-generated invoice **without re-rendering it** |
+
+`generate-save` and `save-only` require `MONGODB_URI`, and the machine's public egress IP must be allowlisted on the cluster. Use `save-only` when a PDF has already been produced and reviewed — regenerating would spend another API call and rewrite the file with a new creation date.
 
 Keep the `invoice.json` you used. It is gitignored, so archive it alongside the generated PDF if you want the invoice to be reproducible later.
 

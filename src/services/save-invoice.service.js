@@ -10,7 +10,8 @@ export const saveInvoice = async (invoice, client) => {
 
     console.log("Invoice saved", result.insertedId);
   } catch (error) {
-    console.error("Error saving invoice", error);
+    // Rethrow for the same reason as connect(): a failed insert must not exit 0.
+    throw new Error(`Error saving invoice: ${error.message}`);
   } finally {
     await client.close();
   }
