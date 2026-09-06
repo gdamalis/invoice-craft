@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate-save": "node src/index.js --save",
-    "generate": "node src/index.js"
+    "generate": "node src/index.js",
+    "save-only": "node src/index.js --save-only"
   },
   "repository": {
     "type": "git",

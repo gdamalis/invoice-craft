@@ -29,6 +29,10 @@ export async function connect() {
 
     return client;
   } catch (error) {
-    console.error("Error connecting to MongoDB", error);
+    // Rethrow: returning undefined here made a failed connection look like a
+    // successful run -- saveInvoice would log an error and the process would
+    // still exit 0, so an invoice could silently never reach the archive.
+    await client.close().catch(() => {});
+    throw new Error(`Could not connect to MongoDB: ${error.message}`);
   }
 }
